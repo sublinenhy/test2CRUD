@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonAdd;
     Button buttonViewALl;
     Button buttonUpdate;
+    Button buttonDelete;
 
 
 
@@ -52,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
         buttonAdd = (Button)findViewById(R.id.buttonAdd);
         buttonViewALl = (Button)findViewById(R.id.buttonViewAll);
         buttonUpdate = (Button)findViewById(R.id.buttonUpdate);
+        buttonDelete = (Button)findViewById(R.id.buttonDelete);
 
 
 
         AddDate();
         viewAll();
         updateData();
+        deleteData();
 
     }
 
@@ -142,6 +145,22 @@ public class MainActivity extends AppCompatActivity {
                         if (isUpdate == true)
 
                             Toast.makeText(MainActivity.this,"Update Successfully!!!",Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(MainActivity.this,"Oops! Bad News",Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+    }
+
+
+    public void deleteData(){
+        buttonDelete.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Integer deleteRows = myDb.deleteData(ID.getText().toString());
+                        if (deleteRows > 0)
+                            Toast.makeText(MainActivity.this,"delete Successfully!!!",Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(MainActivity.this,"Oops! Bad News",Toast.LENGTH_LONG).show();
                     }
